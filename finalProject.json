@@ -1,0 +1,108 @@
+[
+
+    {
+        "name": "SendVoterInfo",
+        "params": {
+            "action": "remote_call",
+            "owner_vsID": "1234567890",
+            "host_url": "1234567890",
+        "class_id": "transaction",
+        "object_id": "0000000001",
+        "voterInfo": "jsonstr"
+        },
+        "returns": {
+            "action": "call",
+            "owner_vsID": "1234567890",
+            "host_url": "1234567890",
+        "class_id": "transaction",
+        "object_id": "0000000001",
+        "response": "jsonstr"
+        }
+    },
+    {
+        "name": "GetAuthMessage",
+        "params": {
+            "action": "remote_call",
+            "owner_vsID": "1234567890",
+            "host_url": "1234567890",
+	    "class_id": "transaction",
+	    "object_id": "0000000001",
+	    "message": "jsonstr",
+        "voterInfo" : "jsonstr",
+        "machineId" : "jsonstr"
+        },
+        "returns": {
+            "action": "call",
+            "owner_vsID": "1234567890",
+            "host_url": "1234567890",
+	    "class_id": "transaction",
+	    "object_id": "0000000001",
+	    "response": "jsonstr"
+        }
+    },
+
+    {
+        "name": "GetBallot",
+        "params": {
+            "action": "remote_call",
+            "owner_vsID": "1234567890",
+            "host_url": "1234567890",
+	    "class_id": "transaction",
+	    "object_id": "0000000001",
+	    "message": "jsonstr",
+        "voterInfo": "jsonstr"
+        },
+        "returns": {
+            "action": "call",
+            "owner_vsID": "1234567890",
+            "host_url": "1234567890",
+	    "class_id": "transaction",
+	    "object_id": "0000000001",
+	    "response": "jsonstr"
+        }
+    },
+
+    {
+        "name": "SendVote",
+        "params": {
+            "action": "remote_call",
+            "owner_vsID": "1234567890",
+            "host_url": "1234567890",
+        "class_id": "transaction",
+        "object_id": "0000000001",
+        "vote": "jsonstr",
+        "voterInfo": "jsonstr"
+        },
+        "returns": {
+            "action": "call",
+            "owner_vsID": "1234567890",
+            "host_url": "1234567890",
+        "class_id": "transaction",
+        "object_id": "0000000001",
+        "response": "jsonstr"
+        }
+    },
+
+    {
+        "name": "GetReceipt",
+        "params": {
+            "action": "remote_call",
+            "owner_vsID": "1234567890",
+            "host_url": "1234567890",
+        "class_id": "transaction",
+        "object_id": "0000000001",
+        "message": "jsonstr",
+        "voterInfo": "jsonstr",
+        "machineId": "jsonstr"
+        },
+        "returns": {
+            "action": "call",
+            "owner_vsID": "1234567890",
+            "host_url": "1234567890",
+        "class_id": "transaction",
+        "object_id": "0000000001",
+        "response": "jsonstr"
+        }
+    }
+
+]

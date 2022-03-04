@@ -16,7 +16,7 @@ LDFLAGS_SV = -ljsoncpp -lmicrohttpd -ljsonrpccpp-common -ljsonrpccpp-server
 LDFLAGS_CL = -ljsoncpp -lcurl -ljsonrpccpp-common -ljsonrpccpp-client
 
 # rules.
-all: 	client server officeserver
+all: 	client machineserver officeserver
 
 #
 #
@@ -48,11 +48,11 @@ ShadowVotingOffice.o:        ShadowVotingOffice.cpp ShadowVotingOffice.h $(CORE_
 client.o:	client.cpp ShadowVotingMachine.h ShadowVotingOffice.h $(CORE_INCS) client.h
 	$(CC) -c $(CFLAGS) client.cpp
 
-server.o:		server.cpp ShadowVotingMachine.h ShadowVotingOffice.h $(CORE_INCS) server.h
-	$(CC) -c $(CFLAGS) server.cpp
+machineserver.o:	machineserver.cpp ShadowVotingMachine.h ShadowVotingOffice.h $(CORE_INCS) server.h
+	$(CC) -c $(CFLAGS) machineserver.cpp
 
-server:		$(CORE_OBJS) server.o
-	$(CC) -o server $(CORE_OBJS) server.o ShadowVotingMachine.o ShadowVotingOffice.o $(LDFLAGS_SV) $(LDFLAGS_CL)
+machineserver:		$(CORE_OBJS) machineserver.o
+	$(CC) -o machineserver $(CORE_OBJS) machineserver.o ShadowVotingMachine.o ShadowVotingOffice.o $(LDFLAGS_SV) $(LDFLAGS_CL)
 
 # hw1client --> hw1server --> hw1another
 
@@ -66,5 +66,5 @@ client:		$(CORE_OBJS) client.o ShadowVotingOffice.o ShadowVotingMachine.o
 	$(CC) -o client $(CORE_OBJS) client.o ShadowVotingOffice.o ShadowVotingMachine.o $(LDFLAGS_CL)
 
 clean:
-	rm -f *.o *~ core client server officeserver client.h server.h
+	rm -f *.o *~ core client machineserver officeserver client.h server.h
 

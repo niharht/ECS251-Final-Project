@@ -88,31 +88,41 @@ main()
 
   vector<std::string> msg2 = svm1.sendVoterInfo(voter1.getVoterInfo());
 
-  cout << "Printing the message 2" << endl;
+  cout << "Printing result of sendVoterInfo" << endl;
   cout << msg2[0] << endl;
   cout << msg2[1] << endl;
   cout << msg2[2] << endl;
 
+  cout << "" << endl;
+
   vector<std::string> msg3 = svo1.getAuthMessage(msg2[0], msg2[1], msg2[2]);
-  cout << "Printing the message 3" << endl;
+  cout << "Printing the result of getAuthMessage" << endl;
   cout << msg3[0] << endl;
   cout << msg3[1] << endl;
   //cout << msg1[2] << endl;
 
+  cout << "" << endl;
+
   vector<std::string> msg4 = svm1.getBallot(msg3[0], msg3[1]);
-  cout << "Printing the message 4" << endl;
+  cout << "Printing the result of getBallot" << endl;
   cout << msg4[0] << endl;
 
+  cout << "" << endl;
+
   vector<std::string> msg6 = svm1.sendVote("Candidate A", voter1.getVoterInfo());
-  cout << "Printing the message 6" << endl;
+  cout << "Printing the result of sendVote" << endl;
   cout << msg6[0] << endl;
   cout << msg6[1] << endl;
   cout << msg6[2] << endl;
 
+  cout << "" << endl;
+
   vector<std::string> msg7 = svo1.getReceipt(msg6[0], msg6[1], msg6[2]);
-  cout << "Printing the message 7" << endl;
+  cout << "Printing the result of getReceipt" << endl;
   cout << msg7[0] << endl;
   cout << msg7[1] << endl;
+
+  cout << "" << endl;
 
 
   return 0;

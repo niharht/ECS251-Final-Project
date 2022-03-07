@@ -32,9 +32,6 @@ public:
   virtual Json::Value SendVote(const std::string& action, const std::string& class_id, const std::string& host_url, const std::string& object_id, const std::string& owner_vsID, const std::string& vote, const std::string& voterInfo);
   virtual Json::Value GetReceipt(const std::string& action, const std::string& class_id, const std::string& host_url, const std::string& machineId, const std::string& message, const std::string& object_id, const std::string& owner_vsID, const std::string& voterInfo);
 
-
-private:
-  vector<std::string> parseString(std::string arg);
 };
 
 MyVotingMachineServer::MyVotingMachineServer(AbstractServerConnector &connector, serverVersion_t type)
@@ -46,21 +43,6 @@ MyVotingMachineServer::MyVotingMachineServer(AbstractServerConnector &connector,
 
 VotingMachine *vm1;
 
-
-
-vector<std::string> MyVotingMachineServer::parseString(std::string arg){
-
-    vector<std::string> result;
-    std::stringstream ss(arg);
-    std::string word;
-    while (ss >> word) {
-        //cout << word << endl;
-      result.push_back(word);
-    }
-
-    return result;
-}
-
 //implementation for sendVoterInfo
 Json::Value MyVotingMachineServer::SendVoterInfo
 (const std::string& action, const std::string& class_id, 
@@ -68,11 +50,15 @@ Json::Value MyVotingMachineServer::SendVoterInfo
   const std::string& owner_vsID, const std::string& voterInfo)
 {
 
-  std::cout << "getting AuthMessage" << std::endl;
+
+  std::cout << "calling SendVoterInfo ###Message 1####" << std::endl;
+  std::cout << "voterInfo: " << voterInfo << std::endl;
+
+  std::cout << "" << std::endl;
 
 
   Json::Value result;
-  std::cout << action << " " << owner_vsID << std::endl;
+  //std::cout << action << " " << owner_vsID << std::endl;
   std::string strJson;
 
   vector<std::string> s;
@@ -88,8 +74,8 @@ Json::Value MyVotingMachineServer::SendVoterInfo
     {
       if (object_id == "00000001"){
         s = vm1->sendVoterInfo(voterInfo);
-        cout<< "found message: ";
-        cout<< s[0] + " " + s[1] << endl;
+        //cout<< "found message: ";
+        //cout<< s[0] + " " + s[1] << endl;
 
       }
       
@@ -188,11 +174,16 @@ Json::Value MyVotingMachineServer::GetBallot
 {
 
 
-  std::cout << "calling GetBallot" << std::endl;
+  std::cout << "calling GetBallot ###Message 3####" << std::endl;
+
+  std::cout << "message: " << message << std::endl;
+  std::cout << "voterInfo: " << voterInfo << std::endl;
+
+  std::cout << "" << std::endl;
 
 
   Json::Value result;
-  std::cout << action << " " << owner_vsID << std::endl;
+  //std::cout << action << " " << owner_vsID << std::endl;
   std::string strJson;
 
   vector<std::string> s;
@@ -212,7 +203,8 @@ Json::Value MyVotingMachineServer::GetBallot
           s = vm1->getBallot(message, voterInfo);
 
       strJson += "{\"status\" : \"successful\", ";
-      strJson += ("\"candidate1\": \"" + s[0]+ "\"}");
+      strJson += ("\"candidate1\": \"" + s[0]+ "\",");
+      strJson += ("\"candidate2\": \"" + s[1]+ "\"}");
 
     }
 
@@ -243,11 +235,17 @@ Json::Value MyVotingMachineServer::SendVote
 {
 
 
-  std::cout << "calling SendVote" << std::endl;
+  std::cout << "calling SendVote ###Message 5####" << std::endl;
+
+
+  std::cout << "voted for : " << vote << std::endl;
+  std::cout << "voterInfo: " << voterInfo << std::endl;
+
+  std::cout << "" << std::endl;
 
 
   Json::Value result;
-  std::cout << action << " " << owner_vsID << std::endl;
+  //std::cout << action << " " << owner_vsID << std::endl;
   std::string strJson;
 
   vector<std::string> s;

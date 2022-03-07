@@ -9,13 +9,13 @@ using namespace std;
 
 class Voter : public Core{
 	private:
-		int votingId;
+		int voterId;
 		std::string name;
 
 	public:
 		Voter(std::string, std::string, std::string, std::string);
 		Voter(std::string, std::string, std::string, std::string, std::string, int);
-		int getVotingId();
+		int getVoterId();
 		std::string getName();
 		std::string getVoterInfo();
 

@@ -12,8 +12,8 @@ using namespace std;
 class VotingMachine : public Core{
 	private:
 		int votingMachineID;
-		std::string authMessage;
 		int candidateA;
+		int candidateB;
 		
 	public:
 		VotingMachine(std::string, std::string, std::string, std::string);
@@ -21,7 +21,6 @@ class VotingMachine : public Core{
 		virtual vector<std::string> sendVoterInfo(std::string);
 		virtual vector<std::string> getBallot(std::string, std::string);
 		virtual vector<std::string> sendVote(std::string, std::string);
-		void generateAuthMessage();
 
 
 };

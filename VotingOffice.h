@@ -13,7 +13,6 @@ using namespace std;
 class VotingOffice : public Core{
 	private:
 		std::string votingOfficeName;
-		//std::string authMessage;
 		set<std::string> registeredVoters;
 	public:
 		VotingOffice(std::string, std::string, std::string, std::string);

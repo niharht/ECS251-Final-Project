@@ -32,8 +32,6 @@ public:
   virtual Json::Value SendVote(const std::string& action, const std::string& class_id, const std::string& host_url, const std::string& object_id, const std::string& owner_vsID, const std::string& vote, const std::string& voterInfo);
   virtual Json::Value GetReceipt(const std::string& action, const std::string& class_id, const std::string& host_url, const std::string& machineId, const std::string& message, const std::string& object_id, const std::string& owner_vsID, const std::string& voterInfo);
 
-private:
-  vector<std::string> parseString(std::string arg);
 };
 
 MyOfficeServer::MyOfficeServer(AbstractServerConnector &connector, serverVersion_t type)
@@ -46,123 +44,6 @@ MyOfficeServer::MyOfficeServer(AbstractServerConnector &connector, serverVersion
 VotingOffice *vo1;
 
 
-vector<std::string> MyOfficeServer::parseString(std::string arg){
-
-    vector<std::string> result;
-    std::stringstream ss(arg);
-    std::string word;
-    while (ss >> word) {
-        //cout << word << endl;
-      result.push_back(word);
-    }
-
-    return result;
-}
-
-/*
-Json::Value MyOfficeServer::GetAuthMessage
-(const std::string& action, const std::string& arguments, 
- const std::string& class_id, const std::string& host_url, 
- const std::string& object_id, const std::string& owner_vsID)
-{
-
-  std::cout << "getting AuthMessage" << std::endl;
-
-
-  Json::Value result;
-  std::cout << action << " " << arguments << " " << owner_vsID << std::endl;
-  std::string strJson;
-
-  string s = "";
-  if ((class_id != "VotingMachine") || ((object_id != "00000001")))
-    {
-      strJson += "{\"status\" : \"failed\", ";
-      if (class_id != "VotingMachine")
-  strJson += ("\"reason\": \"class " + class_id + " unknown\"}");
-      else
-  strJson += ("\"reason\": \"object " + object_id + " unknown\"}");
-    }
-  else
-    {
-      //if (object_id == "00000001")
-          //s = vm1->getAuthMessage();
-
-      strJson += "{\"status\" : \"successful\", ";
-      strJson += ("\"message\": " + s + "}");
-    }
-
-  Json::CharReaderBuilder builder;
-  Json::CharReader* reader = builder.newCharReader();
-  std::string errors;
-  bool parsingSuccessful = reader->parse
-    (strJson.c_str(), strJson.c_str() + strJson.size(), &result, &errors);
-  delete reader;
-
-  if (!parsingSuccessful) {
-    std::cout << "Failed to parse the JSON, errors:" << std::endl;
-    std::cout << errors << std::endl;
-  }
-
-  return result;
-
-
-}
-
-Json::Value MyOfficeServer::SetAuthMessage
-(const std::string& action, const std::string& arguments, 
- const std::string& class_id, const std::string& host_url, 
- const std::string& object_id, const std::string& owner_vsID)
-{
-
-
-  std::cout << "setting AuthMessage" << std::endl;
-
-
-  Json::Value result;
-  std::cout << action << " " << arguments << " " << owner_vsID << std::endl;
-  std::string strJson;
-
-  vector<std::string> s;
-  bool b;
-
-
-  //parse the arguments and add as vector to pass to setAuthMessage
-  s = parseString(arguments);
-
-  if ((class_id != "VotingOffice") || ((object_id != "00000001")))
-    {
-      strJson += "{\"status\" : \"failed\", ";
-      if (class_id != "VotingOffice")
-  strJson += ("\"reason\": \"class " + class_id + " unknown\"}");
-      else
-  strJson += ("\"reason\": \"object " + object_id + " unknown\"}");
-    }
-  else
-    {
-      if (object_id == "00000001")
-          b = vo1->setAuthMessage(s);
-
-      strJson += "{\"status\" : \"successful\", ";
-      strJson += ("\"result\": " + to_string(b) + "}");
-    }
-
-  Json::CharReaderBuilder builder;
-  Json::CharReader* reader = builder.newCharReader();
-  std::string errors;
-  bool parsingSuccessful = reader->parse
-    (strJson.c_str(), strJson.c_str() + strJson.size(), &result, &errors);
-  delete reader;
-
-  if (!parsingSuccessful) {
-    std::cout << "Failed to parse the JSON, errors:" << std::endl;
-    std::cout << errors << std::endl;
-  }
-
-  return result;
-
-}
-*/
-
 
 //implementation for sendVoterInfo
 //not used by this class
@@ -172,7 +53,7 @@ Json::Value MyOfficeServer::SendVoterInfo
   const std::string& owner_vsID, const std::string& voterInfo)
 {
 
-  std::cout << "getting AuthMessage" << std::endl;
+  std::cout << "getting AuthMessage." << std::endl;
 
 
   Json::Value result;
@@ -192,8 +73,8 @@ Json::Value MyOfficeServer::SendVoterInfo
     {
       if (object_id == "00000001"){
         //s = vm1->SendVoterInfo(voterInfo);
-        cout<< "found message: ";
-        cout<< s[0] + " " + s[1] << endl;
+        //cout<< "found message: ";
+        //cout<< s[0] + " " + s[1] << endl;
 
       }
       
@@ -232,11 +113,16 @@ Json::Value MyOfficeServer::GetAuthMessage
   const std::string& owner_vsID, const std::string& voterInfo)
 {
 
-  std::cout << "getting AuthMessage" << std::endl;
+  std::cout << "calling GetAuthMessage. ###Message 2####" << std::endl;
+  std::cout << "message: " << message << std::endl;
+  std::cout << "machineId: " << machineId << std::endl;
+  std::cout << "voterInfo: " << voterInfo << std::endl;
+
+  std::cout << "" << std::endl;
 
 
   Json::Value result;
-  std::cout << action << " " << owner_vsID << std::endl;
+  //std::cout << action << " " << owner_vsID << std::endl;
   std::string strJson;
 
   vector<std::string> s;
@@ -252,8 +138,8 @@ Json::Value MyOfficeServer::GetAuthMessage
     {
       if (object_id == "00000001"){
         s = vo1->getAuthMessage(message, machineId, voterInfo);
-        cout<< "found message: ";
-        cout<< s[0] + " " + s[1] << endl;
+        //cout<< "found message: ";
+        //cout<< s[0] + " " + s[1] << endl;
 
       }
       
@@ -399,11 +285,16 @@ Json::Value MyOfficeServer::GetReceipt
 {
 
 
-  std::cout << "calling GetReceipt" << std::endl;
+  std::cout << "calling GetReceipt ###Message 6####" << std::endl;
+  std::cout << "message: " << message << std::endl;
+  std::cout << "machineId: " << machineId << std::endl;
+  std::cout << "voterInfo: " << voterInfo << std::endl;
+
+  std::cout << "" << std::endl;
 
 
   Json::Value result;
-  std::cout << action << " " << owner_vsID << std::endl;
+  //std::cout << action << " " << owner_vsID << std::endl;
   std::string strJson;
 
   vector<std::string> s;

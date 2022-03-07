@@ -9,17 +9,17 @@ Voter::Voter(std::string core_arg_host_url, std::string core_arg_owner_vsID, std
 		cout << "Voter Constructor" << endl;
 }
 
-Voter::Voter(std::string core_arg_host_url, std::string core_arg_owner_vsID, std::string core_arg_class_id, std::string core_arg_object_id, std::string name, int votingID)
+Voter::Voter(std::string core_arg_host_url, std::string core_arg_owner_vsID, std::string core_arg_class_id, std::string core_arg_object_id, std::string name, int voterID)
 	: Core(core_arg_host_url, core_arg_owner_vsID, core_arg_class_id, core_arg_object_id)
 {
 	this->name = name;
-	this->votingId = votingID;
+	this->voterId = voterID;
 }
 	
 
 
-int Voter::getVotingId(){
-	return this->votingId;
+int Voter::getVoterId(){
+	return this->voterId;
 }
 
 std::string Voter::getName(){
@@ -27,5 +27,5 @@ std::string Voter::getName(){
 }
 
 std::string Voter::getVoterInfo(){
-	return to_string(this->getVotingId()) + this->getName();
+	return to_string(this->getVoterId()) + this->getName();
 }

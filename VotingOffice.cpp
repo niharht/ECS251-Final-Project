@@ -18,36 +18,11 @@ VotingOffice::VotingOffice(std::string core_arg_host_url, std::string core_arg_o
 		this->registeredVoters.insert("0Wu");
 }
 
-/*
-bool
-VotingOffice::setAuthMessage(vector<std::string> args){
 
-	if(args.size() < 2){
-		return false;
-	}
-
-	std::string voter = args[1];
-
-	if(registeredVoters.count(voter) != 1){
-		return false;
-	}
-
-
-	//this->authMessage = arg;
-	return true;
-}
-
-
-std::string 
-VotingOffice::getAuthMessage(){
-	return "";
-}
-
-*/
 
 vector<std::string> VotingOffice::getAuthMessage(std::string message, std::string machineId, std::string voterInfo){
 
-	//FIXME: will need to add logic to check if machine Id is registered
+	//In the future: will need to add logic to check if machine Id is registered
 	vector<std::string> result;
 
 	if(registeredVoters.count(voterInfo) != 1){
@@ -65,8 +40,15 @@ vector<std::string> VotingOffice::getAuthMessage(std::string message, std::strin
 
 
 vector<std::string> VotingOffice::getReceipt(std::string message, std::string machineId, std::string voterInfo){
-	//FIXME: will need to add logic to check if machine Id is registered
+	
+	//In the future: will need to add logic to check if machine Id is registered
 	vector<std::string> result;
+
+	if(message != "hasVoted"){
+		result.push_back("Hasn't Voted");
+		result.push_back(voterInfo);
+		return result;
+	}
 
 	if(registeredVoters.count(voterInfo) != 1){
 		result.push_back("Not Authorized");

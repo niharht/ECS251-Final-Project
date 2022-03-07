@@ -15,25 +15,8 @@ VotingMachine::VotingMachine(std::string core_arg_host_url, std::string core_arg
 
     this->votingMachineID = votingMachineID;
     this->candidateA = 0;
+    this->candidateB = 0;
 }
-
-
-void
-VotingMachine::generateAuthMessage(){
-  this->authMessage = "ThisIsAnAuthMessage";
-}
-
-
-/*
-vector<std::string>
-VotingMachine::getAuthMessage(std::string voterInfo){
-  vector<std::string> result;
-  cout << "Generating the auth message" << endl;
-  this->generateAuthMessage();
-  result.push_back(this->authMessage);
-  result.push_back(voterInfo);
-  return result;
-}*/
 
 
 vector<std::string> VotingMachine::sendVoterInfo(std::string voterInfo){
@@ -59,6 +42,7 @@ vector<std::string> VotingMachine::getBallot(std::string message, std::string vo
 
 
     result.push_back("Candidate A");
+    result.push_back("Candidate B");
 
     return result;
 
@@ -70,9 +54,14 @@ vector<std::string> VotingMachine::sendVote(std::string vote, std::string voterI
 
   if(vote == "Candidate A"){
     candidateA++;
-    cout << "Count for candidate A is ";
-    cout << candidateA << endl;
+  }else if(vote == "Candidate B"){
+    candidateB++;
   }
+
+  cout << "Count for candidate A is " << candidateA << endl;
+  cout << "Count for candidate B is " << candidateB << endl;
+
+  cout << "" << endl;
 
   result.push_back("hasVoted");
   result.push_back(to_string(this->votingMachineID));

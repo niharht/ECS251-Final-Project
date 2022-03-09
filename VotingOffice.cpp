@@ -28,6 +28,7 @@ vector<std::string> VotingOffice::getAuthMessage(std::string message, std::strin
 	if(registeredVoters.count(voterInfo) != 1){
 		result.push_back("Not Authorized");
 		result.push_back(voterInfo);
+		std::cout << voterInfo << " is not authorized to vote " << std::endl;
 		return result;
 	}
 
